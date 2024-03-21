@@ -2,8 +2,6 @@
 # Rnewswacafi
 
 <!-- badges: start -->
-[![R build status](https://github.com/DRC-Wacafi/Rnewswacafi/workflows/R-CMD-check/badge.svg)](https://github.com/DRC-Wacafi/Rnewswacafi/actions)
-[![version](https://img.shields.io/github/tag/DRC-Wacafi/Rnewswacafi.svg)](https://github.com/DRC-Wacafi/Rnewswacafi/releases)
 [![code-size](https://img.shields.io/github/languages/code-size/DRC-Wacafi/Rnewswacafi.svg)](https://github.com/DRC-Wacafi/Rnewswacafi)
 <!-- badges: end -->
 
@@ -24,5 +22,18 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(Rnewswacafi)
 ## basic example code
+
+# Keys
+api_key <- "6a07a7ee-ade3-4209-aa1b-b4504ebc0e68"
+api_secret <- "pbkdf2_sha256$600000$eVJKaltgn341HcwJWfVlWg$bpuIG09itt+g1R2MDOzS/QMoJstT6bWZTTVTcQlQ3cc="
+
+# Connection
+connect_info <- api_connect(api_key = api_key, api_secret = api_secret)
+
+# Get data
+start_date <- as.Date("2024-01-01")
+end_date <- as.Date("2024-01-31")
+news <- get_news(connect_info, start_date, end_date)
+head(news,2)
 ```
 
