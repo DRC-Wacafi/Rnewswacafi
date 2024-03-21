@@ -24,8 +24,8 @@ library(Rnewswacafi)
 ## basic example code
 
 # Keys
-api_key <- "6a07a7ee-ade3-4209-aa1b-b4504ebc0e68"
-api_secret <- "pbkdf2_sha256$600000$eVJKaltgn341HcwJWfVlWg$bpuIG09itt+g1R2MDOzS/QMoJstT6bWZTTVTcQlQ3cc="
+api_key <- "Your-Key"
+api_secret <- "Your-secret"
 
 # Connection
 connect_info <- api_connect(api_key = api_key, api_secret = api_secret)
