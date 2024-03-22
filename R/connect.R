@@ -11,14 +11,14 @@
 #'
 #' @examples
 #' # Utilisation de la fonction pour établir une connexion à l'API
-#' api_key <- "6a07a7ee-ade3-4209-aa1b-b4504ebc0e68"
-#' api_secret <- "pbkdf2_sha256$600000$eVJKaltgn341HcwJWfVlWg$bpuIG09itt+g1R2MDOzS/QMoJstT6bWZTTVTcQlQ3cc="
+#' api_key <- "8c2cf1af-c970-47dd-a3fb-9841b2e9e8ed"
+#' api_secret <- "pot_SvtyFegiqK2YckFNfAXPgjdNtVrM8BdW_jKd-zo"
 #' connection_info <- api_connect(api_key = api_key, api_secret = api_secret)
 #'
 #' @export
 
 api_connect <- function(api_key, api_secret) {
-  base_url <- 'http://173.249.41.98/api'
+  base_url <- 'api.newswacafi.online/api'
 
   headers <- c(
     "Api-Key" = api_key,

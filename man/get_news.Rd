@@ -4,7 +4,15 @@
 \alias{get_news}
 \title{Fonction pour récupérer les news par les endpoints}
 \usage{
-get_news(connect_info, start_date, end_date)
+get_news(
+  connect_info,
+  start_date,
+  end_date,
+  query = NULL,
+  source = NULL,
+  category = NULL,
+  country = NULL
+)
 }
 \arguments{
 \item{connect_info}{Une liste contenant les informations d'authentification, obtenue en utilisant la fonction \code{api_connect}.}
@@ -12,17 +20,25 @@ get_news(connect_info, start_date, end_date)
 \item{start_date}{La date de début de la période de sélection des données (format "yyyy-mm-dd").}
 
 \item{end_date}{La date de fin de la période de sélection des données (format "yyyy-mm-dd").}
+
+\item{query}{Requête pour filtrer les données par mots-clés (facultatif), ex: query=securité au sahel.}
+
+\item{source}{Source des données (facultatif), ex: source=journaldumali.com.}
+
+\item{category}{Catégorie des données (facultatif), ex: category=economique,politique.}
+
+\item{country}{Pays des données (facultatif), ex: country=ml}
 }
 \value{
 Une table de données, avec leurs détails tels que l'identifiant, le titre, la description, le contenu, la date de publication, le pays, le tri par pays, le nombre de commentaires et les mentions.
 }
 \description{
-Cette fonction récupère les données publiés dà les variables de flitrage configurées.
+Cette fonction récupère les données publiées dans les variables de filtrage configurées.
 }
 \examples{
-# Utilisation de la fonction pour récupérer les news par date
-api_key <- "6a07a7ee-ade3-4209-aa1b-b4504ebc0e68"
-api_secret <- "pbkdf2_sha256$600000$eVJKaltgn341HcwJWfVlWg$bpuIG09itt+g1R2MDOzS/QMoJstT6bWZTTVTcQlQ3cc="
+# Utilisation de la fonction pour rÃ©cupÃ©rer les news par date
+api_key <- "8c2cf1af-c970-47dd-a3fb-9841b2e9e8ed"
+api_secret <- "pot_SvtyFegiqK2YckFNfAXPgjdNtVrM8BdW_jKd-zo"
 connect_info <- api_connect(api_key = api_key, api_secret = api_secret)
 start_date <- as.Date("2024-01-01")
 end_date <- as.Date("2024-01-31")
