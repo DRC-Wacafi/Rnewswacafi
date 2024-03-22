@@ -33,7 +33,7 @@ get_news(
 Une table de données, avec leurs détails tels que l'identifiant, le titre, la description, le contenu, la date de publication, le pays, le tri par pays, le nombre de commentaires et les mentions.
 }
 \description{
-Cette fonction récupère les données publiées dans les variables de filtrage configurées.
+Cette fonction récupère les données publiées dans les variables de filtrage configurées. Pour plus de détails, consultez la documentation à l'adresse suivante : https://docs.newswacafi.online/
 }
 \examples{
 # Utilisation de la fonction pour rÃ©cupÃ©rer les news par date

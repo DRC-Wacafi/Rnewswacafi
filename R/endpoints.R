@@ -1,6 +1,6 @@
 #' Fonction pour récupérer les news par les endpoints
 #'
-#' Cette fonction récupère les données publiées dans les variables de filtrage configurées.
+#' Cette fonction récupère les données publiées dans les variables de filtrage configurées. Pour plus de détails, consultez la documentation à l'adresse suivante : https://docs.newswacafi.online/
 #'
 #' @param connect_info Une liste contenant les informations d'authentification, obtenue en utilisant la fonction `api_connect`.
 #' @param start_date La date de début de la période de sélection des données (format "yyyy-mm-dd").

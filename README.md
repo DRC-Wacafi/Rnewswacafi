@@ -33,7 +33,8 @@ connect_info <- api_connect(api_key = api_key, api_secret = api_secret)
 # Get data
 start_date <- as.Date("2024-01-01")
 end_date <- as.Date("2024-01-31")
-news <- get_news(connect_info, start_date, end_date)
+news <- get_news(connect_info, start_date, end_date, query=NULL,
+                     source=NULL, category=NULL, country=NULL)
 head(news,2)
 ```
 
