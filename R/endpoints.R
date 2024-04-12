@@ -34,8 +34,8 @@ get_news <- function(connect_info, start_date, end_date, query=NULL,
     stop("start_date and end_date are required")
   }
 
-  start_date <- format(start_date, "%d-%m-%Y")
-  end_date <- format(end_date, "%d-%m-%Y")
+  start_date <- as.Date(format(start_date, "%d-%m-%Y"), "%d-%m-%Y")
+  end_date <- as.Date(format(end_date, "%d-%m-%Y"), "%d-%m-%Y")
   url <- paste0(base_url, "/news/?start_date=", start_date, "&end_date=", end_date)
 
   if (!is.null(query)) {
@@ -54,16 +54,25 @@ get_news <- function(connect_info, start_date, end_date, query=NULL,
     url <- paste0(url, "&country=", country)
   }
 
-  response <- httr::GET(url, add_headers(.headers = connect_info$headers))
+  response <- httr::GET(url, httr::add_headers(.headers = connect_info$headers))
 
   if (response$headers$`content-type` == "application/json" && response$status_code == 200) {
-    json_data <- httr::content(response, as = "text")
-    news_df <- jsonlite::fromJSON(json_data)$data[,c("date","country","countrysort",
-                                                     "title","description","content","ncomments","mentions")]
+    json_data <- httr::content(response, as = "text", encoding = "UTF-8")
+    json_list <- jsonlite::fromJSON(json_data)
+    if(length(json_list$data) == 0){
+      stop("No data in this date range. Please check the order of start_date and end_date.")
+    }else{
+      news_df <- json_list$data[,c("date","country","countrysort",
+                        "title","description","content","category","ncomments","mentions",
+                        "source","link")]
+    }
     return(news_df)
   } else {
-    error <- content(response, as = "text")
-    if ("detail" %in% names(error)) {
+    error <- httr::content(response, as = "text", encoding = "UTF-8")
+    error <- jsonlite::fromJSON(error)
+    if("error" %in% names(error)) {
+      stop(error$error)
+    } else if ("detail" %in% names(error)) {
       stop(error$detail)
     } else if ("message" %in% names(error)) {
       stop(error$message)

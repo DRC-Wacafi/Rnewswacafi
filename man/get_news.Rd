@@ -36,7 +36,7 @@ Une table de données, avec leurs détails tels que l'identifiant, le titre, la 
 Cette fonction récupère les données publiées dans les variables de filtrage configurées. Pour plus de détails, consultez la documentation à l'adresse suivante : https://docs.newswacafi.online/
 }
 \examples{
-# Utilisation de la fonction pour rÃ©cupÃ©rer les news par date
+# Utilisation de la fonction pour récupérer les news par date
 api_key <- "8c2cf1af-c970-47dd-a3fb-9841b2e9e8ed"
 api_secret <- "pot_SvtyFegiqK2YckFNfAXPgjdNtVrM8BdW_jKd-zo"
 connect_info <- api_connect(api_key = api_key, api_secret = api_secret)
