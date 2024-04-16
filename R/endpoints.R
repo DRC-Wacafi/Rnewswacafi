@@ -5,10 +5,10 @@
 #' @param connect_info Une liste contenant les informations d'authentification, obtenue en utilisant la fonction `api_connect`.
 #' @param start_date La date de début de la période de sélection des données (format "yyyy-mm-dd").
 #' @param end_date La date de fin de la période de sélection des données (format "yyyy-mm-dd").
-#' @param query Requête pour filtrer les données par mots-clés (facultatif), ex: query=securité au sahel.
-#' @param source Source des données (facultatif), ex: source=journaldumali.com.
-#' @param category Catégorie des données (facultatif), ex: category=economique,politique.
-#' @param country Pays des données (facultatif), ex: country=ml
+#' @param query Requête pour filtrer les données par mots-clés (facultatif), ex: query=c('securité au sahel').
+#' @param source Source des données (facultatif), ex: source=c('journaldumali.com', 'faso.net').
+#' @param category Catégorie des données (facultatif), ex: category=c('economique','politique').
+#' @param country Pays des données (facultatif), ex: country=c('ml')
 #' @return Une table de données, avec leurs détails tels que l'identifiant, le titre, la description, le contenu, la date de publication, le pays, le tri par pays, le nombre de commentaires et les mentions.
 #'
 #' @import httr
@@ -34,24 +34,32 @@ get_news <- function(connect_info, start_date, end_date, query=NULL,
     stop("start_date and end_date are required")
   }
 
-  start_date <- as.Date(format(start_date, "%d-%m-%Y"), "%d-%m-%Y")
-  end_date <- as.Date(format(end_date, "%d-%m-%Y"), "%d-%m-%Y")
+  start_date <- as.POSIXct(start_date, format="%d-%m-%Y")
+  end_date <- as.POSIXct(end_date, format="%d-%m-%Y")
+
   url <- paste0(base_url, "/news/?start_date=", start_date, "&end_date=", end_date)
 
-  if (!is.null(query)) {
+  if(!is.null(source)) {
+    source <- gsub(" ", "", source)
+    source <- paste0("&source=", paste(source, collapse = ","))
+    url <- paste0(url, source)
+  }
+
+  if(!is.null(category)) {
+    category <- gsub(" ", "", category)
+    category <- paste0("&category=", paste(category, collapse = ","))
+    url <- paste0(url, category)
+  }
+
+  if(!is.null(country)) {
+    country <- gsub(" ", "", country)
+    country <- paste0("&country=", paste(country, collapse = ","))
+    url <- paste0(url, country)
+  }
+
+  if(!is.null(query)) {
+    query <- gsub(" ", "", query)
     url <- paste0(url, "&query=", query)
-  }
-
-  if (!is.null(source)) {
-    url <- paste0(url, "&source=", source)
-  }
-
-  if (!is.null(category)) {
-    url <- paste0(url, "&category=", category)
-  }
-
-  if (!is.null(country)) {
-    url <- paste0(url, "&country=", country)
   }
 
   response <- httr::GET(url, httr::add_headers(.headers = connect_info$headers))

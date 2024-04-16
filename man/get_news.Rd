@@ -21,13 +21,13 @@ get_news(
 
 \item{end_date}{La date de fin de la période de sélection des données (format "yyyy-mm-dd").}
 
-\item{query}{Requête pour filtrer les données par mots-clés (facultatif), ex: query=securité au sahel.}
+\item{query}{Requête pour filtrer les données par mots-clés (facultatif), ex: query=c('securité au sahel').}
 
-\item{source}{Source des données (facultatif), ex: source=journaldumali.com.}
+\item{source}{Source des données (facultatif), ex: source=c('journaldumali.com', 'faso.net').}
 
-\item{category}{Catégorie des données (facultatif), ex: category=economique,politique.}
+\item{category}{Catégorie des données (facultatif), ex: category=c('economique','politique').}
 
-\item{country}{Pays des données (facultatif), ex: country=ml}
+\item{country}{Pays des données (facultatif), ex: country=c('ml')}
 }
 \value{
 Une table de données, avec leurs détails tels que l'identifiant, le titre, la description, le contenu, la date de publication, le pays, le tri par pays, le nombre de commentaires et les mentions.
