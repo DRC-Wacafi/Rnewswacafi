@@ -21,7 +21,7 @@ get_news(
 
 \item{end_date}{La date de fin de la période de sélection des données (format "yyyy-mm-dd").}
 
-\item{query}{Requête pour filtrer les données par mots-clés (facultatif), ex: query=c('securité au sahel').}
+\item{query}{Requête pour filtrer les données par mots-clés (facultatif), ex: query='securité au sahel'.}
 
 \item{source}{Source des données (facultatif), ex: source=c('journaldumali.com', 'faso.net').}
 

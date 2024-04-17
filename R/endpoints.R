@@ -5,7 +5,7 @@
 #' @param connect_info Une liste contenant les informations d'authentification, obtenue en utilisant la fonction `api_connect`.
 #' @param start_date La date de début de la période de sélection des données (format "yyyy-mm-dd").
 #' @param end_date La date de fin de la période de sélection des données (format "yyyy-mm-dd").
-#' @param query Requête pour filtrer les données par mots-clés (facultatif), ex: query=c('securité au sahel').
+#' @param query Requête pour filtrer les données par mots-clés (facultatif), ex: query='securité au sahel'.
 #' @param source Source des données (facultatif), ex: source=c('journaldumali.com', 'faso.net').
 #' @param category Catégorie des données (facultatif), ex: category=c('economique','politique').
 #' @param country Pays des données (facultatif), ex: country=c('ml')
@@ -58,7 +58,6 @@ get_news <- function(connect_info, start_date, end_date, query=NULL,
   }
 
   if(!is.null(query)) {
-    query <- gsub(" ", "", query)
     url <- paste0(url, "&query=", query)
   }
 
@@ -68,7 +67,8 @@ get_news <- function(connect_info, start_date, end_date, query=NULL,
     json_data <- httr::content(response, as = "text", encoding = "UTF-8")
     json_list <- jsonlite::fromJSON(json_data)
     if(length(json_list$data) == 0){
-      stop("No data in this date range. Please check the order of start_date and end_date.")
+      warning("No data in this date range.")
+      news_df <- data.frame(NULL)
     }else{
       news_df <- json_list$data[,c("date","country","countrysort",
                         "title","description","content","category","ncomments","mentions",
