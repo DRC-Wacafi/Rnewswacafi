@@ -26,54 +26,30 @@
 #' head(news,2)
 #'
 #' @details
-#' Possible endpoint values:
+#' Possible values for each parameter:
 #'
-#' \begin{table}
-#' \centering
-#' \begin{tabular}{|l|}
-#' \hline
-#' \textbf{Source} \\ \hline
-#' lefaso.net \\
-#' burkina24.com \\
-#' sidwaya.info \\
-#' aib.media \\
-#' lesahel.org \\
-#' actuniger.com \\
-#' levenementniger.com \\
-#' journaldumali.com \\
-#' maliweb.net \\
-#' maliactu.net \\ \hline
-#' \end{tabular}
-#' \caption{Possible sources}
-#' \label{tab:sources}
-#' \end{table}
+#' Source:
+#' - lefaso.net
+#' - burkina24.com
+#' - sidwaya.info
+#' - aib.media
+#' - lesahel.org
+#' - actuniger.com
+#' - levenementniger.com
+#' - journaldumali.com
+#' - maliweb.net
+#' - maliactu.net
 #'
-#' \begin{table}
-#' \centering
-#' \begin{tabular}{|l|}
-#' \hline
-#' \textbf{Category} \\ \hline
-#' Politics \\
-#' Economics \\
-#' Society \\
-#' Governance \\ \hline
-#' \end{tabular}
-#' \caption{Possible categories}
-#' \label{tab:categories}
-#' \end{table}
+#' Category:
+#' - Politique
+#' - Economique
+#' - Society
+#' - Gouvernance
 #'
-#' \begin{table}
-#' \centering
-#' \begin{tabular}{|l|l|}
-#' \hline
-#' \textbf{Country} & \textbf{Country code} \\ \hline
-#' Mali & ml \\
-#' Burkina Faso & bf \\
-#' Niger & ne \\ \hline
-#' \end{tabular}
-#' \caption{Possible countries and country codes}
-#' \label{tab:countries-codes}
-#' \end{table}
+#' Country:
+#' - ml (Mali)
+#' - bf (Burkina Faso)
+#' - ne (Niger)
 #'
 #' @export
 
