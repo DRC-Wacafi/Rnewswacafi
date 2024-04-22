@@ -15,6 +15,7 @@
 #' @import jsonlite
 #'
 #' @examples
+#'
 #' # Utilisation de la fonction pour récupérer les news par date
 #' api_key <- "8c2cf1af-c970-47dd-a3fb-9841b2e9e8ed"
 #' api_secret <- "pot_SvtyFegiqK2YckFNfAXPgjdNtVrM8BdW_jKd-zo"
@@ -23,6 +24,56 @@
 #' end_date <- as.Date("2024-01-31")
 #' news <- get_news(connect_info, start_date, end_date)
 #' head(news,2)
+#'
+#' @details
+#' Possible endpoint values:
+#'
+#' \begin{table}
+#' \centering
+#' \begin{tabular}{|l|}
+#' \hline
+#' \textbf{Source} \\ \hline
+#' lefaso.net \\
+#' burkina24.com \\
+#' sidwaya.info \\
+#' aib.media \\
+#' lesahel.org \\
+#' actuniger.com \\
+#' levenementniger.com \\
+#' journaldumali.com \\
+#' maliweb.net \\
+#' maliactu.net \\ \hline
+#' \end{tabular}
+#' \caption{Possible sources}
+#' \label{tab:sources}
+#' \end{table}
+#'
+#' \begin{table}
+#' \centering
+#' \begin{tabular}{|l|}
+#' \hline
+#' \textbf{Category} \\ \hline
+#' Politics \\
+#' Economics \\
+#' Society \\
+#' Governance \\ \hline
+#' \end{tabular}
+#' \caption{Possible categories}
+#' \label{tab:categories}
+#' \end{table}
+#'
+#' \begin{table}
+#' \centering
+#' \begin{tabular}{|l|l|}
+#' \hline
+#' \textbf{Country} & \textbf{Country code} \\ \hline
+#' Mali & ml \\
+#' Burkina Faso & bf \\
+#' Niger & ne \\ \hline
+#' \end{tabular}
+#' \caption{Possible countries and country codes}
+#' \label{tab:countries-codes}
+#' \end{table}
 #'
 #' @export
 
@@ -61,13 +112,15 @@ get_news <- function(connect_info, start_date, end_date, query=NULL,
     url <- paste0(url, "&query=", query)
   }
 
-  response <- httr::GET(url, httr::add_headers(.headers = connect_info$headers))
+  req_url <- utils::URLencode(url)
+  response <- httr::GET(req_url, httr::add_headers(.headers = connect_info$headers))
 
   if (response$headers$`content-type` == "application/json" && response$status_code == 200) {
     json_data <- httr::content(response, as = "text", encoding = "UTF-8")
     json_list <- jsonlite::fromJSON(json_data)
     if(length(json_list$data) == 0){
-      warning("No data in this date range.")
+      #warning("No data in this selection.")
+      cat("No data in this selection.\n")
       news_df <- data.frame(NULL)
     }else{
       news_df <- json_list$data[,c("date","country","countrysort",

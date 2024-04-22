@@ -35,7 +35,58 @@ Une table de données, avec leurs détails tels que l'identifiant, le titre, la 
 \description{
 Cette fonction récupère les données publiées dans les variables de filtrage configurées. Pour plus de détails, consultez la documentation à l'adresse suivante : https://docs.newswacafi.online/
 }
+\details{
+Possible endpoint values:
+
+\begin{table}
+\centering
+\begin{tabular}{|l|}
+\hline
+\textbf{Source} \\ \hline
+lefaso.net \\
+burkina24.com \\
+sidwaya.info \\
+aib.media \\
+lesahel.org \\
+actuniger.com \\
+levenementniger.com \\
+journaldumali.com \\
+maliweb.net \\
+maliactu.net \\ \hline
+\end{tabular}
+\caption{Possible sources}
+\label{tab:sources}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{|l|}
+\hline
+\textbf{Category} \\ \hline
+Politics \\
+Economics \\
+Society \\
+Governance \\ \hline
+\end{tabular}
+\caption{Possible categories}
+\label{tab:categories}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Country} & \textbf{Country code} \\ \hline
+Mali & ml \\
+Burkina Faso & bf \\
+Niger & ne \\ \hline
+\end{tabular}
+\caption{Possible countries and country codes}
+\label{tab:countries-codes}
+\end{table}
+}
 \examples{
+
 # Utilisation de la fonction pour récupérer les news par date
 api_key <- "8c2cf1af-c970-47dd-a3fb-9841b2e9e8ed"
 api_secret <- "pot_SvtyFegiqK2YckFNfAXPgjdNtVrM8BdW_jKd-zo"
